@@ -222,14 +222,14 @@ static NSString* const kCLDrawToolEraserIconName = @"eraserIconAssetsName";
 
 - (void)setMenu
 {
-    CGFloat W = 70;
+    CGFloat W = 60;
     
     _colorSlider = [self defaultSliderWithWidth:_menuView.width - W - 20];
     _colorSlider.left = 10;
     _colorSlider.top  = 5;
     [_colorSlider addTarget:self action:@selector(colorSliderDidChange:) forControlEvents:UIControlEventValueChanged];
     _colorSlider.backgroundColor = [UIColor colorWithPatternImage:[self colorSliderBackground]];
-    _colorSlider.value = 0;
+    _colorSlider.value = 0.35;
     [_menuView addSubview:_colorSlider];
     
     _widthSlider = [self defaultSliderWithWidth:_colorSlider.width];

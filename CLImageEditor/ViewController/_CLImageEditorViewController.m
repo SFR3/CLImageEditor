@@ -5,6 +5,9 @@
 //  Copyright (c) 2013年 CALACULU. All rights reserved.
 //
 
+#define IDIOM    UI_USER_INTERFACE_IDIOM()
+#define IPAD     UIUserInterfaceIdiomPad
+
 #import "_CLImageEditorViewController.h"
 
 #import "CLImageToolBase.h"
@@ -12,8 +15,9 @@
 
 #pragma mark- _CLImageEditorViewController
 
-static const CGFloat kNavBarHeight = 44.0f;
-static const CGFloat kMenuBarHeight = 80.0f;
+static const CGFloat kNavBarHeight = 0.0f;
+static const CGFloat kMenuBarHeightIpad = 80.0f;
+static const CGFloat kMenuBarHeightIphone = 40.0f;
 
 @interface _CLImageEditorViewController()
 <CLImageToolProtocol, UINavigationBarDelegate>
@@ -96,13 +100,12 @@ static const CGFloat kMenuBarHeight = 80.0f;
 - (void)initNavigationBar
 {
     self.navigationItem.rightBarButtonItem = [self createDoneButton];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)initMenuScrollView
 {
     if(self.menuView==nil){
-        UIScrollView *menuScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, kMenuBarHeight)];
+      UIScrollView *menuScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, IDIOM == IPAD ? kMenuBarHeightIpad : kMenuBarHeightIphone)];
         
         // Adjust for iPhone X
         if (@available(iOS 11.0, *)) {
@@ -143,15 +146,15 @@ static const CGFloat kMenuBarHeight = 80.0f;
             y = _navigationBar.bottom;
         }
         
-        imageScroll.top = y;
+        imageScroll.top = 0;
         imageScroll.height = self.view.height - imageScroll.top - _menuView.height;
         
         [self.view insertSubview:imageScroll atIndex:0];
         _scrollView = imageScroll;
         
         if (@available(iOS 11.0, *)) {
-            [_CLImageEditorViewController setConstraintsLeading:@0 trailing:@0 top:nil bottom:@(-_menuView.height) height:nil width:nil parent:self.view child:imageScroll peer:nil];
-            [_CLImageEditorViewController setConstraintsLeading:nil trailing:nil top:@(y) bottom:nil height:nil width:nil parent:self.view child:imageScroll peer:self.view.safeAreaLayoutGuide];
+            [_CLImageEditorViewController setConstraintsLeading:@0 trailing:@0 top:@0 bottom:@(-_menuView.height) height:nil width:nil parent:self.view child:imageScroll peer:nil];
+            [_CLImageEditorViewController setConstraintsLeading:nil trailing:nil top:@0 bottom:nil height:nil width:nil parent:self.view child:imageScroll peer:self.view.safeAreaLayoutGuide];
         }
         else{
             [_CLImageEditorViewController setConstraintsLeading:@0 trailing:@0 top:@(y) bottom:@(-_menuView.height) height:nil width:nil parent:self.view child:imageScroll peer:nil];
@@ -277,6 +280,7 @@ static const CGFloat kMenuBarHeight = 80.0f;
     self.view.clipsToBounds = YES;
     self.view.backgroundColor = self.theme.backgroundColor;
     self.navigationController.view.backgroundColor = self.view.backgroundColor;
+  self.navigationController.navigationBar.hidden = true;
     
     if([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]){
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -499,7 +503,7 @@ static const CGFloat kMenuBarHeight = 80.0f;
     for(UIView *sub in _menuView.subviews){ [sub removeFromSuperview]; }
     
     CGFloat x = 0;
-    CGFloat W = 70;
+    CGFloat W = 60;
     CGFloat H = _menuView.height;
     
     int toolCount = 0;
