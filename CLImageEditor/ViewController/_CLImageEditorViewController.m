@@ -102,10 +102,29 @@ static const CGFloat kMenuBarHeightIphone = 40.0f;
     self.navigationItem.rightBarButtonItem = [self createDoneButton];
 }
 
+- (bool)isASmallerIphone
+{
+  if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+  {
+    CGSize result = [[UIScreen mainScreen] bounds].size;
+    if(result.height == 667 || result.height == 736)
+    {
+      // iPhone 6,7,8 & Plus
+      return  true;
+    } else
+    {
+      // Other iPhones
+      return  false;
+    }
+  } else {
+    return false;
+  }
+}
+
 - (void)initMenuScrollView
 {
     if(self.menuView==nil){
-      UIScrollView *menuScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, IDIOM == IPAD ? kMenuBarHeightIpad : kMenuBarHeightIphone)];
+      UIScrollView *menuScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, IDIOM == IPAD ? kMenuBarHeightIpad : [self isASmallerIphone] ? kMenuBarHeightIpad : kMenuBarHeightIphone)];
         
         // Adjust for iPhone X
         if (@available(iOS 11.0, *)) {
@@ -120,7 +139,7 @@ static const CGFloat kMenuBarHeightIphone = 40.0f;
         
         [self.view addSubview:menuScroll];
         self.menuView = menuScroll;
-        [_CLImageEditorViewController setConstraintsLeading:@0 trailing:@0 top:nil bottom:@0 height:@(menuScroll.height) width:nil parent:self.view child:menuScroll peer:nil];
+        [_CLImageEditorViewController setConstraintsLeading:@0 trailing:@0 top:nil bottom:@2 height:@(menuScroll.height) width:nil parent:self.view child:menuScroll peer:nil];
     }
     self.menuView.backgroundColor = [CLImageEditorTheme toolbarColor];
 }
