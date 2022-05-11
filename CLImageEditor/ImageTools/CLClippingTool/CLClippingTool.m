@@ -177,7 +177,7 @@ static NSString* const kCLClippingToolRatioTitleFormat = @"titleFormat";
 
 - (void)setCropMenu
 {
-    CGFloat W = 70;
+    CGFloat W = 60;
     CGFloat x = 0;
     
     NSArray *ratios = self.toolInfo.optionalInfo[kCLClippingToolRatios];

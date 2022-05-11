@@ -99,7 +99,7 @@
 
 - (void)setEffectMenu
 {
-    CGFloat W = 70;
+    CGFloat W = 60;
     CGFloat H = _menuScroll.height;
     CGFloat x = 0;
     
