@@ -8,7 +8,7 @@
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
 
-#import "_CLImageEditorViewController.h"
+#import "../Support/ViewController/_CLImageEditorViewController.h"
 
 #import "CLImageToolBase.h"
 
