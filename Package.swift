@@ -26,8 +26,7 @@ let package = Package(
         .headerSearchPath("../Support"),
         .headerSearchPath("../Support/ImageTools"),
         .headerSearchPath("../Support/Utils"),
-        .headerSearchPath("../Support/ViewController"),
-        .define("OBJC_OLD_DISPATCH_PROTOTYPES", to: "1", .when(platforms: [.iOS])),
+        .headerSearchPath("../Support/ViewController")
       ]
     )
   ],
