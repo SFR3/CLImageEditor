@@ -17,6 +17,26 @@ let package = Package(
       name: "CLImageEditor",
       dependencies: [],
       path: "Sources/CLImageEditor",
+      sources: [
+        "CLImageEditor.h",
+        "CLImageEditor.m",
+        "_CLImageEditorViewController.h",
+        "_CLImageEditorViewController.m",
+        "CLImageEditorTheme.h",
+        "CLImageEditorTheme.m",
+        "CLImageToolInfo.h",
+        "CLImageToolInfo.m",
+        "CLImageToolProtocol.h",
+        "Utils/UIImage+Utility.h",
+        "Utils/UIImage+Utility.m",
+        "Utils/UIView+Frame.h",
+        "Utils/UIView+Frame.m",
+        "Utils/CLToolbarMenuItem.h",
+        "Utils/CLToolbarMenuItem.m",
+        "Utils/CLImageEditorUtils.h",
+        "Utils/CLImageEditorUtils.m",
+        "ViewController/CLImageEditorAllTools.h"
+      ],
       resources: [
         .process("../Support/CLImageEditor.bundle")
       ],
