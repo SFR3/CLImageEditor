@@ -23,10 +23,10 @@ let package = Package(
       publicHeadersPath: ".",
       cSettings: [
         .headerSearchPath("."),
-        .headerSearchPath("Support"),
-        .headerSearchPath("Support/ImageTools"),
-        .headerSearchPath("Support/Utils"),
-        .headerSearchPath("Support/ViewController")
+        .headerSearchPath("../Support"),
+        .headerSearchPath("../Support/ImageTools"),
+        .headerSearchPath("../Support/Utils"),
+        .headerSearchPath("../Support/ViewController")
       ]
     )
   ],
