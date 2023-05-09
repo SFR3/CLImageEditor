@@ -15,10 +15,16 @@ let package = Package(
   targets: [
     .target(
       name: "CLImageEditor",
-      path: "Sources/CLImageEditor",
+      path: "Sources/CLImageEditor/",
       publicHeadersPath: ".",
       cSettings: [
         .headerSearchPath("."),
+      ],
+      linkerSettings: [
+        .linkedFramework("UIKit", .when(platforms: [.iOS])),
+        .linkedFramework("CoreGraphics", .when(platforms: [.iOS])),
+        .linkedFramework("Accelerate", .when(platforms: [.iOS])),
+        .linkedFramework("CoreImage", .when(platforms: [.iOS]))
       ]
     )
   ],

@@ -7,7 +7,7 @@
 
 #import "CLImageEditor.h"
 
-#import "../Support/ViewController/_CLImageEditorViewController.h"
+#import "_CLImageEditorViewController.h"
 
 @interface CLImageEditor ()
 
