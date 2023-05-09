@@ -1,16 +1,16 @@
 //
-//  CLGloomEffect.m
+//  CLBloomEffect.m
 //
 //  Created by sho yakushiji on 2013/10/23.
 //  Copyright (c) 2013年 CALACULU. All rights reserved.
 //
 
-#import "CLGloomEffect.h"
+#import "CLBloomEffect.h"
 
-#import "../Support/Utils/UIImage+Utility.h"
+#import "UIImage+Utility.h"
 #import "UIView+Frame.h"
 
-@implementation CLGloomEffect
+@implementation CLBloomEffect
 {
     UIView *_containerView;
     UISlider *_radiusSlider;
@@ -21,7 +21,7 @@
 
 + (NSString*)defaultTitle
 {
-    return [CLImageEditorTheme localizedString:@"CLGloomEffect_DefaultTitle" withDefault:@"Gloom"];
+    return [CLImageEditorTheme localizedString:@"CLBloomEffect_DefaultTitle" withDefault:@"Bloom"];
 }
 
 + (BOOL)isAvailable
@@ -29,7 +29,7 @@
     return ([UIDevice iosVersion] >= 6.0);
 }
 
-- (id)initWithSuperView:(UIView*)superview imageViewFrame:(CGRect)frame toolInfo:(CLImageToolInfo *)info
+- (id)initWithSuperView:(UIView*)superview imageViewFrame:(CGRect)frame toolInfo:(CLImageToolInfo*)info
 {
     self = [super initWithSuperView:superview imageViewFrame:frame toolInfo:info];
     if(self){
@@ -49,7 +49,7 @@
 - (UIImage*)applyEffect:(UIImage*)image
 {
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
-    CIFilter *filter = [CIFilter filterWithName:@"CIGloom" keysAndValues:kCIInputImageKey, ciImage, nil];
+    CIFilter *filter = [CIFilter filterWithName:@"CIBloom" keysAndValues:kCIInputImageKey, ciImage, nil];
     
     //NSLog(@"%@", [filter attributes]);
     

@@ -4,52 +4,23 @@
 import PackageDescription
 
 let package = Package(
-  name: "CLImageEditor",
-  defaultLocalization: "en",
-  platforms: [.iOS(.v15)],
-  products: [
-    .library(
-      name: "CLImageEditor",
-      targets: ["CLImageEditor"]),
-  ],
-  targets: [
-    .target(
-      name: "CLImageEditor",
-      dependencies: [],
-      path: "Sources/CLImageEditor",
-      sources: [
-        "CLImageEditor.h",
-        "CLImageEditor.m",
-        "_CLImageEditorViewController.h",
-        "_CLImageEditorViewController.m",
-        "CLImageEditorTheme.h",
-        "CLImageEditorTheme.m",
-        "CLImageToolInfo.h",
-        "CLImageToolInfo.m",
-        "CLImageToolProtocol.h",
-        "Utils/UIImage+Utility.h",
-        "Utils/UIImage+Utility.m",
-        "Utils/UIView+Frame.h",
-        "Utils/UIView+Frame.m",
-        "Utils/CLToolbarMenuItem.h",
-        "Utils/CLToolbarMenuItem.m",
-        "Utils/CLImageEditorUtils.h",
-        "Utils/CLImageEditorUtils.m",
-        "ViewController/CLImageEditorAllTools.h"
-      ],
-      resources: [
-        .process("../Support/CLImageEditor.bundle")
-      ],
-      publicHeadersPath: ".",
-      cSettings: [
-        .headerSearchPath("."),
-        .headerSearchPath("../Support"),
-        .headerSearchPath("../Support/ImageTools"),
-        .headerSearchPath("../Support/Utils"),
-        .headerSearchPath("../Support/ViewController")
-      ]
-    )
-  ],
-  swiftLanguageVersions: [.v5]
+    name: "CLImageEditor",
+    defaultLocalization: "en",
+    platforms: [.iOS(.v15), .macOS(.v12), .macCatalyst(.v15)],
+    products: [
+        // Products define the executables and libraries a package produces, making them visible to other packages.
+        .library(
+            name: "CLImageEditor",
+            targets: ["CLImageEditor"]),
+    ],
+    targets: [
+        // Targets are the basic building blocks of a package, defining a module or a test suite.
+        // Targets can depend on other targets in this package and products from dependencies.
+        .target(
+            name: "CLImageEditor"),
+        .testTarget(
+            name: "CLImageEditorTests",
+            dependencies: ["CLImageEditor"]),
+    ],
+    swiftLanguageVersions: [.v5]
 )
-
